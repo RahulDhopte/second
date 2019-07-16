@@ -1,0 +1,78 @@
+<!doctype html> 
+<html> 
+<head> 
+<meta charset="utf-8" /> 
+<title>Title</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+</head> 
+<body> 
+<h4>Check a vegetable, and at least one fruit</h4> 
+<p>- If you try to submit the form without checking the checkbox and radio button, the form is not submitted.</p> 
+<form action='#' method='post' name='f1' onsubmit='return checkButons(this);'> 
+Vegetables: <input type='radio' name='vegetable' value='cabbage' />Cabbage 
+ <input type='radio' name='vegetable' value='carrot' />Carrot<br> 
+Fruits:<br> 
+ <input type='checkbox' name='fruit1' value='apple' />Apple<br> 
+ <input type='checkbox' name='fruit2' value='pear' />Pear<br> 
+ <input type='checkbox' name='fruit3' value='banana' />Banana<br> 
+ <input type='submit' value='Submit' /> 
+</form> 
+<script>
+// checks buttons (radio, checkbox) - coursesweb.net 
+function checkButons(frm) { 
+	
+	
+ var re = false; // used to determine when a button is checked 
+ var err = ''; // to store the errors 
+ 
+
+ var vegetables = frm.vegetable; // contains an array with all radio buttons 'vegetable' 
+
+ // create an Array in JSonn format with checkbox buttons 
+ var fruits = [frm.fruit1, frm.fruit2, frm.fruit3]; 
+ 
+
+
+ // traverse the radio buttons 
+ // if one is checked sets re to true, and stops the iteration with 'break' 
+ for(var i=0; i<vegetables.length; i++) { 
+ if(vegetables[i].checked == true) { 
+ re = true; 
+
+ break; 
+ } 
+ } 
+ 
+ // if 're' is false means no radio button checked, add error in 'err'  
+ if(re == false) err += '- You must check at least one vegetable'; 
+ 
+ // make 're' again False, and traverse the checkbox buttons 
+ // if one is checked sets re to true, and stops the iteration with 'break' 
+ re = false 
+ for(var i=0; i<fruits.length; i++) { 
+ if(fruits[i].checked == true) { 
+ re = true; 
+ break; 
+ } 
+ } 
+ 
+ // if 're' is false means no checkbox button checked, add error in 'err'  
+ if (re == false) err += '\n - You must check at least one fruit'; 
+ 
+ // if 'err' not empty, alert the error(s) and returns False to stop submitting form 
+ if(err != '') { 
+ alert(err); 
+ return false; 
+ } 
+  return true; 
+}
+</script>
+</body> 
+</html>
+
+
+
+
+
+
+
